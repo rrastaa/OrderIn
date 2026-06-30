@@ -1,7 +1,16 @@
-<img src="./public/Orderin.svg" width='123' alt="" />
-<h1>Evaluasi Akhir Semester Mata Kuliah Rekayasa Perangkat Lunak</h1>
+<p align="center">
+  <img src="./public/Orderin.svg" width="120" alt="OrderIn Logo">
+</p>
 
-Sistem Manajemen Produksi Konveksi - OrderIn
+<h1 align="center">
+  Evaluasi Akhir Semester Mata Kuliah Rekayasa Perangkat Lunak
+</h1>
 
-<p>Constantine Rylianno Sumakul - 123240139</p>
-<p>Radhitya Rasta Pramoja - 123240142</p>
+<h2 align="center">
+  Sistem Manajemen Produksi Konveksi - OrderIn
+</h2>
+
+<p align="center">
+  Constantine Rylianno Sumakul - 123240139<br>
+  Radhitya Rasta Pramoja - 123240142
+</p>
