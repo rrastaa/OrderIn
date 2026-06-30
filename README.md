@@ -1,4 +1,6 @@
-![Logo](public/OrderIn.svg)
+<p align="center">
+  <img src="public/OrderIn.svg" alt="OrderIn Logo" width="150">
+</p>
 
 <h1 align="center">
   Evaluasi Akhir Semester Mata Kuliah Rekayasa Perangkat Lunak
