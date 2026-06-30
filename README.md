@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <img src="public/OrderIn.svg" alt="OrderIn Logo" width="150">
+  <img src="public/OrderIn.svg" alt="OrderIn Logo" width="100">
 </p>
 
 <h2 align="center">
