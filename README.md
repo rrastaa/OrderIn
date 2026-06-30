@@ -1,10 +1,10 @@
-<p align="center">
-  <img src="public/OrderIn.svg" alt="OrderIn Logo" width="150">
-</p>
-
 <h1 align="center">
   Evaluasi Akhir Semester Mata Kuliah Rekayasa Perangkat Lunak
 </h1>
+
+<p align="center">
+  <img src="public/OrderIn.svg" alt="OrderIn Logo" width="150">
+</p>
 
 <h2 align="center">
   Sistem Manajemen Produksi Konveksi - OrderIn
