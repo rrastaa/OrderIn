@@ -1,15 +1,43 @@
 import { useForm } from "@inertiajs/react";
-
+import { useState } from "react";
 export default function Assign({ orderList, employeeList, orderHistory }) {
     const { data, setData, post, processing, errors } = useForm({
         orderId: "",
         employee: "",
     });
 
+    const [toast, setToast] = useState({
+        show: false,
+        type: "success",
+        title: "",
+        message: "",
+    });
+
+    const showToast = (type, title, message) => {
+        setToast({
+            show: true,
+            type,
+            title,
+            message,
+        });
+
+        setTimeout(() => {
+            setToast((prev) => ({
+                ...prev,
+                show: false,
+            }));
+        }, 2500);
+    };
+
     const submit = (e) => {
         e.preventDefault();
 
         post(route("owner.assign.assign"));
+        showToast(
+            "success",
+            "Berhasil Menugaskan Order!",
+            "Order ditugaskan kepada pekerja."
+        );
     };
 
     return (
@@ -206,6 +234,65 @@ export default function Assign({ orderList, employeeList, orderHistory }) {
                                 </table>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                className={`fixed left-1/2 top-6 z-50 -translate-x-1/2 transform transition-all duration-500 ease-out ${
+                    toast.show
+                        ? "translate-y-0 opacity-100"
+                        : "-translate-y-10 opacity-0 pointer-events-none"
+                }`}
+            >
+                <div
+                    className={`relative flex items-center gap-3 overflow-hidden rounded-xl border px-5 py-3 shadow-xl backdrop-blur-sm ${
+                        toast.type === "delete"
+                            ? "border-emerald-200 bg-emerald-50"
+                            : toast.type === "edit"
+                            ? "border-blue-200 bg-blue-50"
+                            : "border-emerald-200 bg-emerald-50"
+                    }`}
+                >
+                    <div
+                        className={`flex h-8 w-8 items-center justify-center rounded-full text-white ${
+                            toast.type === "delete"
+                                ? "bg-emerald-500"
+                                : toast.type === "edit"
+                                ? "bg-blue-500"
+                                : "bg-emerald-500"
+                        }`}
+                    >
+                        {toast.type === "delete"
+                            ? "✓"
+                            : toast.type === "edit"
+                            ? "✎"
+                            : "✓"}
+                    </div>
+
+                    <div>
+                        <p
+                            className={`text-sm font-bold ${
+                                toast.type === "delete"
+                                    ? "text-emerald-800"
+                                    : toast.type === "edit"
+                                    ? "text-blue-800"
+                                    : "text-emerald-800"
+                            }`}
+                        >
+                            {toast.title}
+                        </p>
+
+                        <p
+                            className={`text-xs ${
+                                toast.type === "delete"
+                                    ? "text-emerald-600"
+                                    : toast.type === "edit"
+                                    ? "text-blue-600"
+                                    : "text-emerald-600"
+                            }`}
+                        >
+                            {toast.message}
+                        </p>
                     </div>
                 </div>
             </div>

@@ -44,6 +44,7 @@ class OwnerDashboardController extends Controller
         // dd($completedTodayList);
 
         $deadlineOrder = DB::table('orders')
+            ->where('status', '!=', 'Deleted')
             ->where('status', '!=', 'Selesai')
             ->select('jenis_produk', 'jumlah', DB::raw('DATEDIFF(deadline, CURDATE()) as days_left'))
             ->orderBy('deadline')
@@ -60,6 +61,7 @@ class OwnerDashboardController extends Controller
             $chart1Data[] = DB::table('orders')
                 ->whereMonth('created_at', $date->month)
                 ->whereYear('created_at', $date->year)
+                ->where('status','!=','Deleted')
                 ->sum('jumlah');
         }
 
@@ -68,6 +70,7 @@ class OwnerDashboardController extends Controller
         $chart2Data = collect($statuses)->map(function ($status) {
             return DB::table('orders')->where('status', $status)->count();
         });
+
 
         return Inertia::render('Owner/Dashboard', [
             'pendingList' => $pendingList,

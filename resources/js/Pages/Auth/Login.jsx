@@ -28,21 +28,7 @@ export default function Login({ errors }) {
 
                 <div className="w-full md:w-2/5 p-8 flex flex-col justify-center">
                     <div className="mb-6 flex items-center">
-                        <div className="bg-[#1e3a8a] text-white p-3 rounded-xl shadow-md">
-                            <svg
-                                className="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                />
-                            </svg>
-                        </div>
+                        <img src="/Orderin.svg" className="w-10" alt="" />
                     </div>
 
                     <h2 className="text-2xl font-bold text-gray-900 mb-1">
@@ -149,12 +135,13 @@ export default function Login({ errors }) {
 
                     <div className="text-center mt-6">
                         <a
-                            href="#"
+                            href="/register"
                             className="text-xs text-gray-400 hover:text-gray-600 transition"
                         >
-                            Forgot Password?
+                            Belum memiliki akun?
                         </a>
                     </div>
+                    
                 </div>
             </div>
         </div>

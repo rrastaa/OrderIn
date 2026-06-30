@@ -59,7 +59,7 @@ class OrdersController extends Controller
             'customer_id' => $customerId,
             'jenis_produk' => $request->jenis_produk,
             'jumlah' => $request->jumlah,
-            'status' => 'Cutting',
+            'status' => 'Pending',
             'deadline' => $request->deadline,
             'created_at' => now(),
         ]);

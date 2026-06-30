@@ -46,11 +46,41 @@ export default function Orders({ orderList }) {
         deadline: "",
     });
 
+    const [toast, setToast] = useState({
+        show: false,
+        type: "success",
+        title: "",
+        message: "",
+    });
+
+    const showToast = (type, title, message) => {
+        setToast({
+            show: true,
+            type,
+            title,
+            message,
+        });
+
+        setTimeout(() => {
+            setToast((prev) => ({
+                ...prev,
+                show: false,
+            }));
+        }, 2500);
+    };
+
     const submit = (e) => {
         e.preventDefault();
 
         addForm.post(route("owner.orders.store"), {
-            onSuccess: () => addForm.reset(),
+            onSuccess: () => {
+                addForm.reset();
+                showToast(
+                    "success",
+                    "Order berhasil ditambahkan",
+                    "Data pesanan telah tersimpan."
+                );
+            },
         });
     };
 
@@ -90,14 +120,28 @@ export default function Orders({ orderList }) {
         e.preventDefault();
 
         editForm.post(route("owner.orders.update", selectedOrder.id), {
-            onSuccess: () => setShowEditModal(false),
+            onSuccess: () => {
+                setShowEditModal(false);
+                showToast(
+                    "edit",
+                    "Order berhasil diperbarui",
+                    "Perubahan data pesanan telah disimpan."
+                );
+            },
         });
     };
     const del = (e) => {
         e.preventDefault();
 
         deleteForm.post(route("owner.orders.delete", selectedOrder.id), {
-            onSuccess: () => setShowDeleteModal(false),
+            onSuccess: () => {
+                setShowDeleteModal(false);
+                showToast(
+                    "delete",
+                    "Order berhasil dihapus",
+                    "Data pesanan telah dipindahkan dari daftar aktif."
+                );
+            },
         });
     };
 
@@ -428,6 +472,80 @@ export default function Orders({ orderList }) {
                                 </table>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                className={`fixed left-1/2 top-6 z-50 -translate-x-1/2 transform transition-all duration-500 ease-out ${
+                    toast.show
+                        ? "translate-y-0 opacity-100"
+                        : "-translate-y-10 opacity-0 pointer-events-none"
+                }`}
+            >
+                <div
+                    className={`relative flex items-center gap-3 overflow-hidden rounded-xl border px-5 py-3 shadow-xl backdrop-blur-sm ${
+                        toast.type === "delete"
+                            ? "border-emerald-200 bg-emerald-50"
+                            : toast.type === "edit"
+                            ? "border-blue-200 bg-blue-50"
+                            : "border-emerald-200 bg-emerald-50"
+                    }`}
+                >
+                    <div
+                        className={`flex h-8 w-8 items-center justify-center rounded-full text-white ${
+                            toast.type === "delete"
+                                ? "bg-emerald-500"
+                                : toast.type === "edit"
+                                ? "bg-blue-500"
+                                : "bg-emerald-500"
+                        }`}
+                    >
+                        {toast.type === "delete" ? (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="size-6"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                                />
+                            </svg>
+                        ) : toast.type === "edit" ? (
+                            "✎"
+                        ) : (
+                            "✓"
+                        )}
+                    </div>
+
+                    <div>
+                        <p
+                            className={`text-sm font-bold ${
+                                toast.type === "delete"
+                                    ? "text-emerald-800"
+                                    : toast.type === "edit"
+                                    ? "text-blue-800"
+                                    : "text-emerald-800"
+                            }`}
+                        >
+                            {toast.title}
+                        </p>
+
+                        <p
+                            className={`text-xs ${
+                                toast.type === "delete"
+                                    ? "text-emerald-600"
+                                    : toast.type === "edit"
+                                    ? "text-blue-600"
+                                    : "text-emerald-600"
+                            }`}
+                        >
+                            {toast.message}
+                        </p>
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@ class AssignController extends Controller
                 'u.nama as nama_pegawai',
                 'a.assigned_at'
             )
-            ->where('status','!=','Deleted')
+            ->where('status', '!=', 'Deleted')
             ->orderByDesc('a.assigned_at')
             ->get();
 
@@ -51,11 +51,14 @@ class AssignController extends Controller
     public function assign(Request $request)
     {
         $order = DB::table('orders')
-        ->where('id', $request->orderId)
-        ->first();
+            ->where('id', $request->orderId)
+            ->first();
         $request->validate([
             'orderId' => 'required',
             'employee' => 'required',
+        ]);
+        DB::table('orders')->where('id', $order->id)->update([
+            'status' => 'Ditugaskan'
         ]);
         DB::table('assignments')->insert([
             'order_id' => $request->orderId,
@@ -65,7 +68,7 @@ class AssignController extends Controller
         DB::table('notifications')->insert(([
             'user_id' => $request->employee,
             'pesan' => "Tugas Baru: Kerjakan Order {$order->kode_order} ({$order->jenis_produk})",
-            'created_at'=>now(),
+            'created_at' => now(),
         ]));
         return back();
     }

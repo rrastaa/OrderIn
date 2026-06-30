@@ -95,67 +95,70 @@ export default function Dashboard({
 
             <div className="mx-auto w-full max-w-[1400px] p-4 md:p-8">
                 <div className="mb-6 flex flex-col items-center justify-between gap-4 border-b border-gray-200 pb-4 sm:flex-row">
-                    <div className="text-xl font-bold text-gray-900">
+                    <div className="text-xl font-bold text-gray-900 flex-1">
                         OrdeRin
                     </div>
 
-                    <div className="relative w-full sm:max-w-md">
-                        <input
-                            type="text"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            placeholder="Cari Kode Order / Produk..."
-                            className="w-full rounded-full border border-gray-200 bg-white px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        />
+                    <div className="flex flex-1 gap-4 justify-end">
+                        <div className="relative w-full sm:max-w-md">
+                            <input
+                                type="text"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                placeholder="Cari Kode Order / Produk..."
+                                className="w-full rounded-full border border-gray-200 bg-white px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            />
 
-                        {search && (
-                            <div className="absolute left-0 right-0 top-11 z-50 max-h-80 overflow-y-auto rounded-xl border bg-white p-2 shadow-lg">
-                                {filteredOrders.length > 0 ? (
-                                    filteredOrders.map((order) => (
-                                        <a href={route('owner.orders')}>
-                                            <div
-                                                key={order.id}
-                                                className="mb-2 flex justify-between rounded-lg border p-3 text-xs hover:bg-gray-50"
-                                            >
-                                                <div className="flex flex-col">
-                                                    <div className="font-bold text-blue-600 text-sm">
-                                                        {order.kode_order}
+                            {search && (
+                                <div className="absolute left-0 right-0 top-11 z-50 max-h-80 overflow-y-auto rounded-xl border bg-white p-2 shadow-lg">
+                                    {filteredOrders.length > 0 ? (
+                                        filteredOrders.map((order) => (
+                                            <a href={route("owner.orders")}>
+                                                <div
+                                                    key={order.id}
+                                                    className="mb-2 flex justify-between rounded-lg border p-3 text-xs hover:bg-gray-50"
+                                                >
+                                                    <div className="flex flex-col">
+                                                        <div className="font-bold text-blue-600 text-sm">
+                                                            {order.kode_order}
+                                                        </div>
+                                                        <div>
+                                                            {order.jenis_produk}
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        {order.jenis_produk}
+                                                    <div className="flex flex-col text-end">
+                                                        <div className="text-gray-500">
+                                                            Status:{" "}
+                                                            {order.status}
+                                                        </div>
+                                                        <div className="text-gray-500">
+                                                            Deadline:{" "}
+                                                            {order.deadline}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div className="flex flex-col text-end">
-                                                    <div className="text-gray-500">
-                                                        Status: {order.status}
-                                                    </div>
-                                                    <div className="text-gray-500">
-                                                        Deadline:{" "}
-                                                        {order.deadline}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    ))
-                                ) : (
-                                    <div className="p-3 text-center text-xs text-gray-400">
-                                        Order tidak ditemukan.
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <div className="rounded-full border bg-white px-4 py-2 text-xs font-bold shadow-sm">
-                            {auth?.user?.nama ?? "Owner"}
+                                            </a>
+                                        ))
+                                    ) : (
+                                        <div className="p-3 text-center text-xs text-gray-400">
+                                            Order tidak ditemukan.
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
-                        <button
-                            type="button"
-                            onClick={() => router.post(route("logout"))}
-                            className="rounded-full border bg-white px-4 py-2 text-xs font-bold shadow-sm"
-                        >
-                            Logout
-                        </button>
+                        <div className="flex flex-row gap-2">
+                            <div className="rounded-full border bg-white px-4 py-2 text-xs font-bold shadow-sm">
+                                {auth?.user?.nama ?? "Owner"}
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => router.post(route("logout"))}
+                                className="rounded-full border bg-white px-4 py-2 text-xs font-bold shadow-sm"
+                            >
+                                Logout
+                            </button>
+                        </div>
                     </div>
                 </div>
 

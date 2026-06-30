@@ -253,6 +253,14 @@ export default function Register({ errors }) {
                             {processing ? "Creating..." : "Register"}
                         </button>
                     </form>
+                    <div className="text-center mt-4">
+                    <a
+                        href="/login"
+                        className="text-xs text-gray-400 hover:text-gray-600 transition"
+                    >
+                        Sudah memiliki akun?
+                    </a>
+                </div>
                 </div>
 
                 <div className="hidden md:block w-3/5 bg-gray-100 relative">
@@ -263,6 +271,7 @@ export default function Register({ errors }) {
                     />
                     <div className="absolute inset-0 bg-black/10"></div>
                 </div>
+                
             </div>
         </div>
     );
