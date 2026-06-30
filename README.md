@@ -1,4 +1,4 @@
-<img src="/Orderin.svg" className="w-10" alt="" />
+<img src="/public/Orderin.svg" className="w-10" alt="" />
 <h1>Evaluasi Akhir Semester Mata Kuliah Rekayasa Perangkat Lunak</h1>
 
 Sistem Manajemen Produksi Konveksi - OrderIn
