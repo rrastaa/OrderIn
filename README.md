@@ -1,5 +1,5 @@
 <p>
-  <img src="public/Orderin.svg" width="120" alt="OrderIn Logo">
+  <img src="public/Orderin.svg" width="150" alt="OrderIn Logo">
 </p>
 
 <h1 align="center">
